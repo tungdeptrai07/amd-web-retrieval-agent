@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROCmScout — Intelligent Web Information Retrieval Agent</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo-dot"></div>
+      <div>
+        <h1>ROCmScout</h1>
+        <p class="subtitle">AMD AI League · Match 4 Intelligent Web Information Retrieval Agent</p>
+      </div>
+    </div>
+    <div id="computeBadge" class="compute-badge">Checking compute backend…</div>
+  </header>
+
+  <main class="container">
+    <section class="card query-panel">
+      <h2>Ask &amp; Navigate</h2>
+      <div class="presets">
+        <span>Presets:</span>
+        <button type="button" class="preset-btn" data-preset="trnch">Trnch Robinhood Chain Docs</button>
+        <button type="button" class="preset-btn" data-preset="rocm">Wikipedia ROCm Architecture</button>
+        <button type="button" class="preset-btn" data-preset="python">Python asyncio Docs</button>
+      </div>
+
+      <label for="queryInput">Natural-Language Information Request</label>
+      <textarea id="queryInput" rows="2" placeholder="e.g. What chainId does Robinhood Chain use, what are the swap fees, and which routers does Trnch aggregate?"></textarea>
+
+      <label for="seedsInput">Seed URLs (one per line, HTTP/HTTPS)</label>
+      <textarea id="seedsInput" rows="2" placeholder="https://docs.trnch.fun/getting-started"></textarea>
+
+      <div class="controls-row">
+        <label class="inline-field">
+          Max Pages
+          <input id="maxPages" type="number" min="1" max="15" value="6" />
+        </label>
+        <label class="inline-field">
+          Max Hop Depth
+          <input id="maxDepth" type="number" min="0" max="3" value="2" />
+        </label>
+        <label class="checkbox-field">
+          <input id="sameDomain" type="checkbox" checked />
+          Stay on seed domain
+        </label>
+        <button id="runBtn" type="button" class="primary-btn">Run Autonomous Retrieval</button>
+      </div>
+      <div id="statusBar" class="status-bar" hidden></div>
+    </section>
+
+    <section class="grid-two">
+      <article class="card">
+        <div class="card-head">
+          <h2>Synthesized Answer &amp; Ranked Evidence</h2>
+          <span id="confidencePill" class="pill">—</span>
+        </div>
+        <pre id="summaryBox" class="summary-box">Submit a natural-language request and seed URL above to inspect multi-hop navigation and ranked citations.</pre>
+        <div id="evidenceList" class="stack"></div>
+      </article>
+
+      <article class="card">
+        <div class="card-head">
+          <h2>Multi-Hop Navigation Trace</h2>
+          <span id="metricsPill" class="pill">0 pages</span>
+        </div>
+        <div id="traceList" class="stack"></div>
+      </article>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
